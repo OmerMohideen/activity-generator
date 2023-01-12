@@ -5,7 +5,7 @@ const Generate = dynamic(
     { ssr: false }
 );
 
-async function getCompleted() {
+export const getCompleted = async () => {
     const res = await fetch('http://127.0.0.1:8090/api/collections/activities/records?page=1&perPage=30')
     const data = await res.json()
     return data?.items as any[]
@@ -21,16 +21,30 @@ function Activity({ a }: any) {
 async function page() {
   const datas = await getCompleted()
   return (
-    <div className='flex flex-col justify-center items-center'>
+    <div className='flex flex-col justify-center items-center w-full'>
       <Generate />
       <div>
-        {/* <h1 className='text-2xl font-bold'>In Progress</h1> */}
-
-        <h1 className='text-2xl font-bold'>Completed</h1>
+        <div className='inline-flex items-center justify-between w-full'>
+          <h1 className='text-2xl font-bold'>In Progress</h1>
+          <h5 className='text-md'> {datas?.map((data) => {
+            if (!data.completed) {
+              return (
+                <div>
+                  {data.activity}
+                <button className='py-1 px-2 text-sm rounded-lg text-white'>✔</button>
+              </div>
+                )
+            }
+          })}
+          </h5>
+        </div>
+        <h1 className='text-2xl font-bold pt-6'>Completed</h1>
         <div className='pt-6 flex flex-col justify-center items-start gap-3'>
-            {datas?.map((data) => {
+          {datas?.map((data) => {
+              if (data.completed) {
                 return <Activity key={data.id} a={data} />;
-            })}
+              }
+          })}
         </div>
       </div>
     </div>
