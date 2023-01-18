@@ -8,4 +8,4 @@ An Web app which generates an random activity to do using [BoredAPI](https://www
 * Data fetching.
 * React Server Components.
 * PocketBase.
-* TailWind CSS.
+* Tailwind CSS.
