@@ -24,7 +24,7 @@ async function page() {
   return (
     <div className='flex flex-col justify-center items-center w-full'>
       <Generate />
-      <div>
+      <div className='w-1/2 flex flex-col justify-center items-start'>
           <h1 className='text-2xl font-bold'>In Progress</h1>
           <div className='pt-6 flex flex-col justify-center items-start gap-3'>
             {datas?.map((data) => {

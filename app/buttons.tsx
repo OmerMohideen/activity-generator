@@ -9,13 +9,13 @@ function Buttons(props: { id: string; key: string, activity: string }) {
     return (
       <>
             <button onClick={async () => {
+                await pb.collection('activities').update(props.id, { "key": props.key, "activity": props.activity, "completed": true });
                 event?.preventDefault();
-                await pb.collection('activities').update(props.id, {"key": props.key, "activity": props.activity, "completed": true});
                 router.refresh()
             }} className='py-1 px-1 text-sm rounded-lg text-white hover:text-lg duration-300'>✔</button>
             <button onClick={async () => {
-                event?.preventDefault();
                 await pb.collection('activities').delete(props.id);
+                event?.preventDefault();
                 router.refresh()
           }} className='py-1 px-1 text-sm rounded-lg text-white hover:text-lg duration-300'>❌</button>
       </>
