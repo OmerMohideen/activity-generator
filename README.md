@@ -7,3 +7,4 @@ An Web app which generates an random activity to do using [BoredAPI](https://www
 * Next Js v13.
 * Data fetching.
 * React Server Components.
+* PocketBase.
